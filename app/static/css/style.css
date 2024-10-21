@@ -1,7 +1,12 @@
-body {
-    background-color: #f8f9fa;
+/* Garante que o layout ocupe toda a tela */
+body, html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa; /* Cor de fundo */
 }
 
+/* Header com cor azul e centralizado */
 .header {
     background-color: #007bff;
     color: white;
@@ -9,48 +14,78 @@ body {
     text-align: center;
 }
 
+/* Footer fixo no rodapé da tela */
 .footer {
     background-color: #28a745;
     color: white;
     padding: 10px;
     text-align: center;
+    position: fixed; /* Mantém o footer fixo no fim da tela */
+    bottom: 0;
+    left: 0;
+    width: 100%; /* Ocupa toda a largura */
+    box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.2); /* Sombra para separação */
+    z-index: 10; /* Mantém o footer acima dos outros elementos */
 }
 
-.sidebar {
-    background-color: #e9ecef; /* Background da sidebar */
-    padding: 20px;
-    height: 100vh; /* Altura total da tela */
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Sombra */
+/* Container geral usando flexbox */
+.container-fluid {
+    min-height: 100vh; /* Ocupa 100% da altura da tela */
+    display: flex;
+    flex-direction: column; /* Organiza os elementos verticalmente */
 }
 
-.sidebar .form-group {
-    margin-bottom: 15px;
-}
-
+/* Ajuste da área de conteúdo principal */
 .main-area {
-    padding: 25px; /* Espaçamento ao redor */
+    flex: 1; /* Faz a área principal ocupar o espaço disponível */
+    margin-left: 25%; /* Deixa espaço para a sidebar */
+    padding: 25px; /* Espaçamento interno */
 }
 
-.call-info {
-    border: 1px solid #dcdcdc;
-    padding: 15px;
-    border-radius: 5px;
-    background-color: #ffffff; /* Branco */
-    margin-bottom: 20px;
+/* Sidebar colada à esquerda, com estilo canvas */
+.sidebar {
+    background-color: #e9ecef;
+    padding: 20px;
+    width: 25%; /* Ocupa 25% da largura */
+    position: fixed; /* Fixa a sidebar na esquerda */
+    height: 100vh; /* Altura total da tela */
+    top: 0;
+    left: 0;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Sombra 3D */
+    overflow-y: auto; /* Scroll interno se necessário */
 }
 
+/* Estilização dos grupos de formulário */
+.sidebar .form-group {
+    margin-bottom: 15px; /* Espaçamento entre campos */
+}
+
+/* Botões estilizados */
+.btn-success, .btn-primary, .btn-warning {
+    margin-top: 10px; /* Espaço superior nos botões */
+    width: 100%; /* Botões ocupam toda a largura */
+}
+
+/* Tabela estilizada */
 .table-responsive {
-    margin-top: 20px;
+    margin-top: 20px; /* Espaço acima da tabela */
 }
 
 .table {
-    width: 100%;
+    width: 100%; /* A tabela ocupa toda a largura */
+    border-collapse: collapse; /* Remove espaçamento entre células */
 }
 
 .table th, .table td {
-    text-align: center; /* Centralização do texto na tabela */
+    text-align: center; /* Centraliza o texto */
+    padding: 10px; /* Espaçamento interno das células */
 }
 
-.btn-success, .btn-primary, .btn-warning {
-    margin-top: 10px; /* Espaçamento acima dos botões */
+.table thead th {
+    background-color: #f1f1f1; /* Cabeçalho com fundo claro */
+}
+
+/* Texto centralizado */
+.text-center {
+    text-align: center;
 }

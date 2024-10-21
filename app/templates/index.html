@@ -2,9 +2,10 @@
 
 {% block content %}
 <div class="container-fluid">
-    <div class="row">
-        <div class="col-md-3 sidebar"> <!-- Sidebar -->
-            <h2>Menu</h2>
+    <div class="row no-gutters">
+        <!-- Sidebar colada à esquerda -->
+        <div class="col-md-4 sidebar">
+            <h2 class="text-center mb-4">Menu</h2>
             <form id="call-form">
                 <div class="form-group">
                     <label for="operator">Operadora:</label>
@@ -15,26 +16,31 @@
                         <option value="OUTRAS">OUTRAS</option>
                     </select>
                 </div>
+
                 <div class="form-group">
                     <label for="destination">Número Destino:</label>
                     <input type="text" class="form-control" id="destination" placeholder="Ex: 085998403728" required>
                 </div>
+
                 <div class="form-group">
                     <label for="source">Número de Origem:</label>
                     <select class="form-control" id="source" required></select>
                 </div>
+
                 <div class="form-group text-center">
-                    <button type="button" id="make-call" class="btn btn-success">Realizar Chamada</button>
-                    <button type="button" id="generate-report" class="btn btn-primary">Gerar Relatório</button>
+                    <button type="button" id="make-call" class="btn btn-success btn-block">Realizar Chamada</button>
+                    <button type="button" id="generate-report" class="btn btn-primary btn-block">Gerar Relatório</button>
                 </div>
             </form>
         </div>
-        <div class="col-md-9 main-area"> <!-- Histórico de Chamadas -->
-            <h2>Histórico de Chamadas</h2>
+
+        <!-- Main Area: Histórico -->
+        <div class="col-md-8 main-area">
+            <h2 class="text-center mb-4">Histórico de Chamadas</h2>
             <div class="call-info">
                 <div class="table-responsive">
-                    <table class="table table-bordered">
-                        <thead>
+                    <table class="table table-bordered table-hover">
+                        <thead class="thead-light">
                             <tr>
                                 <th>Número de Origem</th>
                                 <th>Número Destino</th>
@@ -42,14 +48,19 @@
                                 <th>Operadora</th>
                             </tr>
                         </thead>
-                        <tbody id="call-list"></tbody> <!-- Onde as chamadas serão listadas -->
+                        <tbody id="call-list"></tbody>
                     </table>
                 </div>
             </div>
-            <div class="buttons">
+            <div class="text-center">
                 <button type="button" class="btn btn-warning" id="new-call">Nova Chamada</button>
             </div>
         </div>
     </div>
+</div>
+
+<!-- Footer Fixo -->
+<div class="footer">
+    © 2024 - Clairton Lima Sistema de Discagem
 </div>
 {% endblock %}
