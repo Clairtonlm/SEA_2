@@ -1,0 +1,60 @@
+body {
+    background-color: #f8f9fa;
+}
+
+.header {
+    background-color: #007bff;
+    color: white;
+    padding: 10px;
+    text-align: center;
+}
+
+.footer {
+    background-color: #28a745;
+    color: white;
+    padding: 10px;
+    text-align: center;
+}
+
+.sidebar {
+    background-color: #e9ecef; /* Canvas-like background */
+    padding: 20px; /* Maior padding para mais espaço */
+    height: 100vh; /* Altura total da tela */
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Sombra para efeito 3D */
+}
+
+.sidebar .form-group {
+    margin-bottom: 15px; /* Para maior espaçamento entre os campos */
+}
+
+form {
+    margin-left: -15px; /* Coloca o formulário mais à esquerda */
+}
+
+.main-area {
+    padding: 25px; /* Mais espaço ao redor */
+}
+
+.call-info {
+    border: 1px solid #dcdcdc;
+    padding: 15px;
+    border-radius: 5px;
+    background-color: #ffffff; /* Branco */
+    margin-bottom: 20px;
+}
+
+.call-info .row {
+    margin-bottom: 10px; /* Espaçamento adicional entre linhas */
+}
+
+.btn-success {
+    background-color: #28a745; /* Verde */
+}
+
+.btn-primary {
+    background-color: #007bff; /* Azul */
+}
+
+.btn-warning {
+    background-color: orange; /* Laranja */
+}

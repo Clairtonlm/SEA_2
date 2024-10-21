@@ -1,0 +1,57 @@
+Relatório de Chamadas
+
+Origem: 
+Destino: 85998403725
+Operadora: Tim
+Status: Pending
+----------------------------------------
+Origem: 
+Destino: 85998403725
+Operadora: Tim
+Status: Pending
+----------------------------------------
+Origem: 
+Destino: 85998403725
+Operadora: Tim
+Status: Pending
+----------------------------------------
+Origem: 
+Destino: 85998403725
+Operadora: Tim
+Status: Pending
+----------------------------------------
+Origem: 
+Destino: 85998403725
+Operadora: Tim
+Status: Pending
+----------------------------------------
+Origem: 
+Destino: 85998403725
+Operadora: Tim
+Status: Pending
+----------------------------------------
+Origem: 
+Destino: 85998403725
+Operadora: Tim
+Status: Pending
+----------------------------------------
+Origem: 
+Destino: 85998403725
+Operadora: Tim
+Status: Pending
+----------------------------------------
+Origem: 
+Destino: 85998403725
+Operadora: Tim
+Status: Pending
+----------------------------------------
+Origem: 
+Destino: 
+Operadora: 
+Status: Pending
+----------------------------------------
+Origem: 11988887777
+Destino: 85998403728
+Operadora: TIM
+Status: Pending
+----------------------------------------

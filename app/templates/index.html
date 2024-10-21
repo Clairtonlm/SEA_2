@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3 sidebar"> <!-- Sidebar -->
+            <h2>Menu</h2>
+            <form id="call-form">
+                <div class="form-group">
+                    <label for="operator">Operadora:</label>
+                    <select class="form-control" id="operator" required>
+                        <option value="TIM">TIM</option>
+                        <option value="CLARO">CLARO</option>
+                        <option value="VIVO">VIVO</option>
+                        <option value="OUTRAS">OUTRAS</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="destination">Número Destino:</label>
+                    <input type="text" class="form-control" id="destination" placeholder="Ex: 11987654321" required>
+                </div>
+                <div class="form-group">
+                    <label for="source">Número de Origem:</label>
+                    <select class="form-control" id="source" required></select>
+                </div>
+                <div class="form-group text-center">
+                    <button type="button" id="make-call" class="btn btn-success">Realizar Chamada</button>
+                    <button type="button" id="generate-report" class="btn btn-primary">Gerar Relatório</button>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-9 main-area"> <!-- Chamada Atual -->
+            <h2>Chamada Atual</h2>
+            <div class="call-info">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <p><strong>Número de Origem:</strong> <span id="current-source"></span></p>
+                    </div>
+                    <div class="col-sm-3">
+                        <p><strong>Número Destino:</strong> <span id="current-destination"></span></p>
+                    </div>
+                    <div class="col-sm-3">
+                        <p><strong>Status:</strong> <span id="current-status"></span></p>
+                    </div>
+                    <div class="col-sm-3">
+                        <p><strong>Operadora:</strong> <span id="current-operator"></span></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="buttons">
+                <button type="button" class="btn btn-warning" id="new-call">Nova Chamada</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
