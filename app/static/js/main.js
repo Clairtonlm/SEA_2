@@ -19,7 +19,8 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     document.getElementById('new-call').addEventListener('click', function() {
-        resetCallInfo(); // Resetar informações da chamada
+        // Recarregar a página para reiniciar o processo de chamada
+        window.location.reload();
     });
 });
 
@@ -116,7 +117,7 @@ function makeSequentialCalls(destination, operator) {
 // Função para adicionar chamada à lista
 function addToCallList(source, destination, operator, status) {
     const callList = document.getElementById('call-list');
-
+    
     // Cria uma nova linha para a tabela
     const row = document.createElement('tr');
     row.innerHTML = `
@@ -160,7 +161,7 @@ function generateReport() {
 }
 
 function resetCallInfo() {
-    // Limpa o histórico de chamadas
+    // Limpa as informações exibidas
     document.getElementById('current-source').textContent = '';
     document.getElementById('current-destination').textContent = '';
     document.getElementById('current-operator').textContent = '';
