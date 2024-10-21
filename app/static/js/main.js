@@ -2,41 +2,18 @@ document.addEventListener('DOMContentLoaded', function() {
     loadSourceNumbers();
 
     document.getElementById('make-call').addEventListener('click', function() {
-        const source = document.getElementById('source').value;
         const destination = document.getElementById('destination').value;
         const operator = document.getElementById('operator').value;
 
-        // Verificação simples
-        if (source === "" || destination === "") {
-            alert("Por favor, preencha todos os campos!");
-            return; // Para não continuar se os campos estiverem vazios
+        if (!destination) {
+            alert("Por favor, preencha o número de destino!");
+            return;  // Pare se o número de destino estiver vazio
         }
 
-        fetch('/api/make_call', {
-            method: 'POST',
-            headers: { 
-                'Content-Type': 'application/json' 
-            },
-            body: JSON.stringify({ source, destination, operator }),
-        })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error("Erro ao iniciar a chamada."); // Lidar com erros se o status não for 200
-            }
-            return response.json();
-        })
-        .then(data => {
-            alert(`Chamada iniciada: ${data.file}`);
-            saveCallToLocalStorage(source, destination, operator);
-            updateCallInfo(source, destination, operator, "Em andamento");
-        })
-        .catch(error => {
-            console.error('Erro:', error);
-            alert("Houve um erro ao realizar a chamada. Veja o console para mais detalhes.");
-        });
+        // Chamar a função para iniciar as chamadas sequenciais
+        makeSequentialCalls(destination, operator);
     });
 
-    // Outras funcionalidades
     document.getElementById('generate-report').addEventListener('click', function() {
         generateReport();
     });
@@ -46,6 +23,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+// Função para carregar os números de origem
 function loadSourceNumbers() {
     fetch('/api/load_numbers')
         .then(response => response.json())
@@ -67,20 +45,97 @@ function loadSourceNumbers() {
         .catch(error => console.error('Erro ao carregar números:', error));
 }
 
-function saveCallToLocalStorage(source, destination, operator) {
-    const callInfo = { source, destination, operator, status: "Em andamento" };
+// Função para fazer chamadas sequenciais
+function makeSequentialCalls(destination, operator) {
+    fetch('/api/load_numbers')
+        .then(response => response.json())
+        .then(data => {
+            const sourceNumbers = data.numbers;
+            if (sourceNumbers.length === 0) {
+                alert("Nenhum número de origem encontrado!");
+                return;
+            }
+
+            let callIndex = 0;
+
+            const callNextNumber = () => {
+                if (callIndex < sourceNumbers.length) {
+                    const source = sourceNumbers[callIndex];
+                    // Fazer a chamada
+                    fetch('/api/make_call', {
+                        method: 'POST',
+                        headers: { 
+                            'Content-Type': 'application/json' 
+                        },
+                        body: JSON.stringify({ source, destination, operator }),
+                    })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error(`Erro ao iniciar a chamada. Status: ${response.status}`);
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        // Salvar estado da chamada no Local Storage
+                        const status = "Chamada Efetuada";  // ou a mensagem de status apropriada
+                        saveCallToLocalStorage(source, destination, operator, status);
+                        
+                        // Adiciona o número atual à tabela do histórico de chamadas
+                        addToCallList(source, destination, operator, status);
+
+                        // Próximo número
+                        callIndex++;
+                        callNextNumber(); // Chamada recursiva para o próximo número
+                    })
+                    .catch(error => {
+                        console.error('Erro durante a chamada:', error);
+                        // Lidar com falha na chamada
+                        const status = "Erro na Chamada"; // Status de erro
+                        saveCallToLocalStorage(source, destination, operator, status);
+
+                        // Adiciona o número atual à tabela mesmo se falhar
+                        addToCallList(source, destination, operator, status);
+
+                        // Próximo número mesmo assim
+                        callIndex++;
+                        callNextNumber();
+                    });
+                } else {
+                    alert("Todas as chamadas foram realizadas.");
+                }
+            };
+
+            callNextNumber();  // Iniciar a primeira chamada
+        })
+        .catch(error => {
+            console.error('Erro ao carregar números de origem:', error);
+            alert("Erro ao carregar números de origem.");
+        });
+}
+
+// Função para adicionar chamada à lista
+function addToCallList(source, destination, operator, status) {
+    const callList = document.getElementById('call-list');
+
+    // Cria uma nova linha para a tabela
+    const row = document.createElement('tr');
+    row.innerHTML = `
+        <td>${source}</td>
+        <td>${destination}</td>
+        <td>${status}</td>
+        <td>${operator}</td>
+    `;
+    callList.appendChild(row);
+}
+
+function saveCallToLocalStorage(source, destination, operator, status) {
+    const callInfo = { source, destination, operator, status };
     const callHistory = JSON.parse(localStorage.getItem('callHistory')) || [];
     callHistory.push(callInfo);
     localStorage.setItem('callHistory', JSON.stringify(callHistory));
 }
 
-function updateCallInfo(source, destination, operator, status) {
-    document.getElementById('current-source').textContent = source;
-    document.getElementById('current-destination').textContent = destination;
-    document.getElementById('current-operator').textContent = operator;
-    document.getElementById('current-status').textContent = status;
-}
-
+// Função para gerar relatório
 function generateReport() {
     const callHistory = JSON.parse(localStorage.getItem('callHistory')) || [];
     let reportContent = "Histórico de Chamadas:\n\n";
@@ -105,8 +160,13 @@ function generateReport() {
 }
 
 function resetCallInfo() {
+    // Limpa o histórico de chamadas
     document.getElementById('current-source').textContent = '';
     document.getElementById('current-destination').textContent = '';
     document.getElementById('current-operator').textContent = '';
     document.getElementById('current-status').textContent = '';
+
+    // Limpa a lista de chamadas
+    const callList = document.getElementById('call-list');
+    callList.innerHTML = '';
 }

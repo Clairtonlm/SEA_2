@@ -4,7 +4,7 @@ def generate_call_file(source, destination, operator):
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     filename = f"call_{timestamp}.call"
     
-    content = f"""Channel: Local/{source}@from-internal
+    content = f"""Channel: SIP/{source}  ; Ou Local/{source}@from-internal se você estiver usando Local
 MaxRetries: 0
 RetryTime: 60
 WaitTime: 30

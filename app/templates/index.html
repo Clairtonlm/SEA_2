@@ -17,7 +17,7 @@
                 </div>
                 <div class="form-group">
                     <label for="destination">Número Destino:</label>
-                    <input type="text" class="form-control" id="destination" placeholder="Ex: 11987654321" required>
+                    <input type="text" class="form-control" id="destination" placeholder="Ex: 085998403728" required>
                 </div>
                 <div class="form-group">
                     <label for="source">Número de Origem:</label>
@@ -29,25 +29,23 @@
                 </div>
             </form>
         </div>
-        <div class="col-md-9 main-area"> <!-- Chamada Atual -->
-            <h2>Chamada Atual</h2>
+        <div class="col-md-9 main-area"> <!-- Histórico de Chamadas -->
+            <h2>Histórico de Chamadas</h2>
             <div class="call-info">
-                <div class="row">
-                    <div class="col-sm-3">
-                        <p><strong>Número de Origem:</strong> <span id="current-source"></span></p>
-                    </div>
-                    <div class="col-sm-3">
-                        <p><strong>Número Destino:</strong> <span id="current-destination"></span></p>
-                    </div>
-                    <div class="col-sm-3">
-                        <p><strong>Status:</strong> <span id="current-status"></span></p>
-                    </div>
-                    <div class="col-sm-3">
-                        <p><strong>Operadora:</strong> <span id="current-operator"></span></p>
-                    </div>
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Número de Origem</th>
+                                <th>Número Destino</th>
+                                <th>Status</th>
+                                <th>Operadora</th>
+                            </tr>
+                        </thead>
+                        <tbody id="call-list"></tbody> <!-- Onde as chamadas serão listadas -->
+                    </table>
                 </div>
             </div>
-
             <div class="buttons">
                 <button type="button" class="btn btn-warning" id="new-call">Nova Chamada</button>
             </div>
