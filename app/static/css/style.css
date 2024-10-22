@@ -12,11 +12,12 @@ body, html {
     color: white;
     padding: 10px;
     text-align: center;
+    
 }
 
 /* Footer fixo no rodapé da tela */
 .footer {
-    background-color: #28a745;
+    background-color: #007bff;
     color: white;
     padding: 10px;
     text-align: center;
@@ -39,7 +40,7 @@ body, html {
 .main-area {
     flex: 1; /* Faz a área principal ocupar o espaço disponível */
     margin-left: 25%; /* Deixa espaço para a sidebar */
-    padding: 25px; /* Espaçamento interno */
+    padding: 30px; /* Espaçamento interno */
 }
 
 /* Sidebar colada à esquerda, com estilo canvas */
@@ -49,21 +50,21 @@ body, html {
     width: 25%; /* Ocupa 25% da largura */
     position: fixed; /* Fixa a sidebar na esquerda */
     height: 100vh; /* Altura total da tela */
-    top: 0;
-    left: 0;
+    top: 80px;
+    left: 3px;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Sombra 3D */
     overflow-y: auto; /* Scroll interno se necessário */
 }
 
 /* Estilização dos grupos de formulário */
 .sidebar .form-group {
-    margin-bottom: 15px; /* Espaçamento entre campos */
+    margin-bottom: 20px; /* Espaçamento entre campos */
 }
 
 /* Botões estilizados */
 .btn-success, .btn-primary, .btn-warning {
     margin-top: 10px; /* Espaço superior nos botões */
-    width: 100%; /* Botões ocupam toda a largura */
+    width: 97%; /* Botões ocupam toda a largura */
 }
 
 /* Tabela estilizada */
